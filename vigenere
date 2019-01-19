@@ -1,0 +1,74 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(int argc, string argv[])
+{
+    // only do this if there are 2 commands. otherwise chastise user if too many or too little commands
+    if (argc == 2)
+    {
+        //iterate over characters in the key and check if they're digits.
+        for (int i = 0; i < strlen(argv[1]); i++)
+        {
+            //if not a letter, then quit the program.
+            if (!isalpha(argv[1][i]))
+            {
+                 return 1; 
+            }
+    
+         }
+        
+        //prompt user for a message
+         string plaintext = get_string("Message: ");
+         printf("ciphertext: ");
+         string key = argv[1];
+
+        //iterate over characters of the message and add the key's relative number to them assuming there are same amount of characters
+         for (int k=0; k<strlen(plaintext); k++)
+            {
+             for(int j= 0; j<strlen(key); j++) 
+             {
+                int cipher[k] = (plaintext[k] + key[j])%26;
+                
+                if (!isalpha(plaintext[k]))
+                {
+                    printf("%c", plaintext[k]);
+                }
+              
+                if (isupper(plaintext[k]) &&  cipher[k] > 'Z')
+                 {
+                    printf("%c", '@' + (cipher[k] - 'Z'));
+                 }
+                else if (isupper(plaintext[k]) && cipher[k] <= 'Z')
+                  {
+                    printf("%c", cipher);
+                  }
+                else if (islower(plaintext[k]) && cipher[k] > 'z')
+                   {
+                    printf("%c", 96 + (cipher[k]-'z'));
+                   }
+                else if (islower(plaintext[k]) && cipher[k] <= 'z')
+                   {
+                      printf("%c", cipher[k]);
+                   }
+             }              
+            }
+        
+   printf("\n");
+        
+        // iterate over strings in argv
+       /* for(int i = 0; i < argc; i++)
+        { */
+            // iterate over characters in the İth string of argv
+            
+    }   
+    else 
+     {
+       printf("NOT ENOUGH COMMANDS");
+       return 1;
+     }
+}
+ 
+
+
